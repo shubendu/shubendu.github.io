@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Predicting the probability that somebody will experience financial distress in the next two years and determine whether or not a loan should be granted.'><title>Financial Distress Prediction using SMOTE</title>
+
+<link rel='canonical' href='https://testing-blog/p/financial-distress-prediction-using-smote/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Financial Distress Prediction using SMOTE'>
+<meta property='og:description' content='Predicting the probability that somebody will experience financial distress in the next two years and determine whether or not a loan should be granted.'>
+<meta property='og:url' content='https://testing-blog/p/financial-distress-prediction-using-smote/'>
+<meta property='og:site_name' content='Shubendu Biswas'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='SMOTE' /><meta property='article:tag' content='EDA' /><meta property='article:tag' content='random forest' /><meta property='article:tag' content='logistic regression' /><meta property='article:tag' content='financial' /><meta property='article:published_time' content='2020-01-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-01-11T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Financial Distress Prediction using SMOTE">
+<meta name="twitter:description" content="Predicting the probability that somebody will experience financial distress in the next two years and determine whether or not a loan should be granted.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'dark' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1424c9191d62a064fe1c15f949eb7d24_124835_300x0_resize_box_2.png" width="300"
+                            height="253" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">👨🏻‍💻</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://testing-blog">Shubendu Biswas</a></h1>
+        <h2 class="site-description">trying to explain data with fun</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <p style="color:rgb(255, 255, 255)">Light</p>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <p style="color:rgb(59, 57, 57)">Dark</p>
+                
+                
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://testing-blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/themes/" >
+                themes
+            </a>
+        
+            <a href="/categories/syntax/" >
+                syntax
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/financial-distress-prediction-using-smote/">Financial Distress Prediction using SMOTE</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Predicting the probability that somebody will experience financial distress in the next two years and determine whether or not a loan should be granted.
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 11, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="problem-statement">Problem Statement</h1>
+<p>Credit scoring algorithms, which makes a guess at the probability of default, are the method banks use to determine whether or not a loan should be granted. We will predicting the probability that somebody will experience financial distress in the next two years.</p>
+<h1 id="dataset">Dataset</h1>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SeriousDlqin2yrs</td>
+<td>Person experienced 90 days past due delinquency or worse</td>
+</tr>
+<tr>
+<td>RevolvingUtilizationOfUnsecuredLines</td>
+<td>Total balance on credit cards and personal lines of credit</td>
+</tr>
+<tr>
+<td>age</td>
+<td>Age of borrower in years</td>
+</tr>
+<tr>
+<td>NumberOfTime30-59DaysPastDueNotWorse</td>
+<td>Number of times borrower has been 30-59 days past due but no worse in the last 2 years</td>
+</tr>
+<tr>
+<td>DebtRatio</td>
+<td>Monthly debt payments, alimony,living costs divided by monthy gross income</td>
+</tr>
+<tr>
+<td>MonthlyIncome</td>
+<td>Monthly Income</td>
+</tr>
+<tr>
+<td>NumberOfOpenCreditLinesAndLoans</td>
+<td>Number of Open loans (installment like car loan or mortgage) and Lines of credit</td>
+</tr>
+<tr>
+<td>NumberOfTimes90DaysLate</td>
+<td>Number of times borrower has been 90 days or more past due</td>
+</tr>
+<tr>
+<td>NumberRealEstateLoansOrLines</td>
+<td>Number of mortgage and real estate loans including home equity lines of credit</td>
+</tr>
+<tr>
+<td>NumberOfTime60-89DaysPastDueNotWorse</td>
+<td>Number of times borrower has been 60-89 days past due but no worse in the last 2 years</td>
+</tr>
+<tr>
+<td>NumberOfDependents</td>
+<td>Number of dependents in family excluding themselves</td>
+</tr>
+</tbody>
+</table>
+<h2 id="importing-libraries">Importing libraries</h2>
+<pre><code>import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+from sklearn import metrics
+import matplotlib.pyplot as plt
+from sklearn.metrics import f1_score, confusion_matrix, classification_report
+from sklearn.metrics import precision_score, recall_score
+from imblearn.over_sampling import SMOTE
+from sklearn.ensemble import RandomForestClassifier
+import warnings
+warnings.filterwarnings('ignore')
+</code></pre><h2 id="1-eda">1. EDA</h2>
+<ul>
+<li>
+<h3 id="11-loading-dataset-and-splitting-into-train-test-sets">1.1 Loading Dataset and splitting into train test sets</h3>
+</li>
+</ul>
+<p>First we&rsquo;ll load the dataset with pandas and split it into X and y variable where X contains our features and y contains our target variable. This can be done by the following code</p>
+<pre><code>df = pd.read_csv('financial.csv').drop('Unnamed: 0',1)
+X = df.drop(['SeriousDlqin2yrs'],axis = 1)
+y = df['SeriousDlqin2yrs']
+count = y.value_counts()
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size = 0.3,random_state = 6)
+</code></pre><ul>
+<li>
+<h3 id="12-visualising-the-data">1.2 Visualising the data</h3>
+</li>
+</ul>
+<p>Visualization is an important part as you can get an idea of the data just by looking at different graphs. We will try to get an idea of how our features are related to the dependent variable and get some insights about the data using scatter plot. The below code will do that.</p>
+<pre><code>cols = list(X.columns)
+fig, axes = plt.subplots(nrows=5, ncols=2, figsize=(10,25))
+for i in range(0,5):
+    for j in range(0,2):
+        col= cols[i * 2 + j]
+        axes[i,j].set_title(col)
+        axes[i,j].scatter(X_train[col],y_train)
+        axes[i,j].set_xlabel(col)
+        axes[i,j].set_ylabel('SeriousDlqin2yrs')
+</code></pre><p><img src="/img/financial/1.jpg" alt="scatter plot"  />
+<img src="/img/financial/2.jpg" alt="scatter plot2"  /></p>
+<ul>
+<li>
+<h3 id="13-value-count-of-classes">1.3 Value count of classes</h3>
+</li>
+</ul>
+<p>As we can see our dataset is highly imbalanced</p>
+<pre><code>sns.countplot(df['SeriousDlqin2yrs'])
+</code></pre><p><img src="/img/financial/imbalance.jpg" alt="value counts"  /></p>
+<h2 id="2-data-preprocessing">2. Data Preprocessing</h2>
+<ul>
+<li>
+<h3 id="21-checking-for-missing-values-and-replace-it-with-appropriate-values">2.1 Checking for missing values and replace it with appropriate values</h3>
+</li>
+</ul>
+<p>Real-world data often has missing values. Data can have missing values for a number of reasons such as observations that were not recorded and data corruption. Handling missing data is important as many machine learning algorithms do not support data with missing values. We will check for missing values and replace them with appropriate values.The below code will do the task.</p>
+<pre><code>print(X_train.isnull().sum())
+X_train['MonthlyIncome'].fillna(X_train['MonthlyIncome'].median(),inplace = True)
+X_train['NumberOfDependents'].fillna(X_train['NumberOfDependents'].median(),inplace = True)
+X_test['MonthlyIncome'].fillna(X_test['MonthlyIncome'].median(),inplace = True)
+X_test['NumberOfDependents'].fillna(X_test['NumberOfDependents'].median(),inplace = True)
+print(X_test.isnull().sum())
+</code></pre><p><img src="/img/financial/fillna.jpg" alt="fillna"  /></p>
+<ul>
+<li>
+<h3 id="22-feature-selection">2.2 Feature selection</h3>
+</li>
+</ul>
+<p>We always try to reduce our features to the minimum number of most significant features. The basic rule of feature selection is that we need to select features which are highly correlated to the dependent variable and also not highly correlated with each other as they show the same trend. We do this with the help of the correlation matrix. So, we will find the features which are highly correlated and select the most significant features amongst them.</p>
+<pre><code>corr = X_train.corr()
+plt.figure(figsize=(14,12))
+sns.heatmap(corr, annot=True, fmt=&quot;.2g&quot;)
+X_train.drop(['NumberOfTime30-59DaysPastDueNotWorse','NumberOfTime60-89DaysPastDueNotWorse'],axis = 1,inplace=True)
+X_test.drop(['NumberOfTime30-59DaysPastDueNotWorse','NumberOfTime60-89DaysPastDueNotWorse'],axis = 1,inplace=True)
+
+print(X_train.columns)
+print(X_test.columns)
+</code></pre><p><img src="/img/financial/corr.jpg" alt="heatmap"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>As we can see from the heat map that the features NumberOfTime30-59DaysPastDueNotWorse, NumberOfTimes90DaysLate and NumberOfTime60-89DaysPastDueNotWorse are highly correlated. So we are dropping NumberOfTime30-59DaysPastDueNotWorse and NumberOfTime60-89DaysPastDueNotWorse from X_train and X_test as well.</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="23-scaling-the-features">2.3 Scaling the features</h3>
+</li>
+</ul>
+<p>While working with the learning model, it is important to scale the features to a range which is centered around zero so that the variance of the features are in the same range. If the feature’s variance is orders of magnitude more than the variance of other features, that particular feature might dominate other features in the dataset and our model will not train well which gives us bad model.</p>
+<pre><code>scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+</code></pre><h2 id="3-model">3. Model</h2>
+<ul>
+<li>
+<h3 id="31-predict-the-values-after-building-a-machine-learning-model">3.1 Predict the values after building a Machine learning model</h3>
+</li>
+</ul>
+<p>Logistic regression is another technique borrowed by machine learning from the field of statistics.It is the go-to method for binary classification problems (problems with two class values). In this post we will discover the logistic regression algorithm for machine learning.This is a classification problem to predict whether somebody will face financial distress in the next two years. So, here we will train our data on a Logistic regression algorithm and try to correctly predict the class.</p>
+<pre><code>log_reg = LogisticRegression()
+log_reg.fit(X_train,y_train)
+y_pred = log_reg.predict(X_test)
+accuracy = accuracy_score(y_test,y_pred)
+</code></pre><ul>
+<li>
+<h3 id="32-is-our-prediction-right">3.2 Is our prediction right?</h3>
+</li>
+</ul>
+<p>Simply, building a predictive model is not your motive. But, creating and selecting a model which gives high accuracy. Hence, it is crucial to check accuracy of the model and we consider different kinds of metrics to evaluate our models. The choice of metric completely depends on the type of model and the implementation plan of the model. After you are finished building your model, these metrics will help you in evaluating your model accuracy.We will print the classification report of our model. This can be done by the following code</p>
+<pre><code>score = roc_auc_score(y_pred , y_test)
+y_pred_proba = log_reg.predict_proba(X_test)[:,1]
+fpr, tpr, _ = metrics.roc_curve(y_test,  y_pred_proba)
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
+plt.plot(fpr,tpr,label=&quot;Logistic model, auc=&quot;+str(auc))
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.legend(loc=4)
+plt.show()
+f1 = f1_score(y_test, log_reg.predict(X_test))
+precision = precision_score(y_test, log_reg.predict(X_test))
+recall = recall_score(y_test, log_reg.predict(X_test))
+roc_auc = roc_auc_score(y_test, log_reg.predict(X_test))
+print ('Confusion_matrix' + '\n', confusion_matrix(y_test, log_reg.predict(X_test)))
+print ('Classification_report' + '\n' + classification_report(y_test,y_pred))
+</code></pre><p><img src="/img/financial/classification.jpg" alt="classification"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>As we can see our model is not working well in calss 1 category because this is an imbalanced data we will now try to fix this. Auc metric helps us to determine if our model is working well in imabalnced class.</p>
+</blockquote>
+<h2 id="4-smote">4. SMOTE</h2>
+<ul>
+<li>
+<h3 id="41-balancing-the-dataset-using-smote">4.1 Balancing the dataset using SMOTE</h3>
+</li>
+</ul>
+<p>As we can see that the dataset is not balanced and it shows that 93% of customers will not face financial distress.In this situation, the predictive model developed using conventional machine learning algorithms could be biased and inaccurate.This happens because Machine Learning Algorithms are usually designed to improve accuracy by reducing the error. Thus, they do not take into account the class distribution / proportion or balance of classes. If we train our model on such an imbalanced data we will get incorrect predictions. To overcome this there are different methods such undersampling, oversampling and SMOTE. We will be using the SMOTE technique.Check for different evaluation metrics.</p>
+<pre><code>count = y.value_counts()
+smote = SMOTE(random_state=9)
+X_sample, y_sample = smote.fit_sample(X_train, y_train)
+sns.countplot(y_sample)
+</code></pre><p><img src="/img/financial/5.jpg" alt="smote"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>As we can see now our dataset is balanced now. Lets try applying new model on this dataset.</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="42-effect-of-applying-smote">4.2 Effect of applying SMOTE?</h3>
+</li>
+</ul>
+<p>SMOTE is an over-sampling method. What it does is, it creates synthetic (not duplicate) samples of the minority class. Hence making the minority class equal to the majority class. After applying &lsquo;SMOTE&rsquo; we have balanced the data. We will use this balanced data for training our model and check whether the performance of our model has improved or not by comparing different evaluation parameters.</p>
+<pre><code>log_reg.fit(X_sample, y_sample)
+y_pred = log_reg.predict(X_test)
+score = roc_auc_score(y_pred , y_test)
+y_pred_proba = log_reg.predict_proba(X_test)[:,1]
+fpr, tpr, _ = metrics.roc_curve(y_test,  y_pred_proba)
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
+plt.plot(fpr,tpr,label=&quot;Logistic model, auc=&quot;+str(auc))
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.legend(loc=4)
+plt.show()
+f1 = f1_score(y_test, log_reg.predict(X_test))
+precision = precision_score(y_test, log_reg.predict(X_test))
+recall = recall_score(y_test, log_reg.predict(X_test))
+# roc_auc = roc_auc_score(y_test, log_reg.predict(X_test))
+print('Confusion matrix' + '\n' ,confusion_matrix(y_test, log_reg.predict(X_test)))
+print ('Classification_report' + '\n' + classification_report(y_test,y_pred))
+</code></pre><p><img src="/img/financial/SMOTE_report.jpg" alt="smote"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>If you compare previos classification report to this one you can observe that our model has imporved pretty much for our minority class. F1 score of class 1 has been improved from 3% to 21% , thats quite an improvemnt!! See the power of SMOTE.</p>
+</blockquote>
+<h2 id="5-random-forest-algorithm">5. Random Forest Algorithm</h2>
+<p>Random Forrest is a bagging technique which uses Decision Tree as the base model. The performance of our Logistic regression model has signifiacntly improved after balancing the data, lets check can we furthur improve it by using a Random Forrest model.</p>
+<pre><code>rf = RandomForestClassifier(random_state=9)
+rf.fit(X_sample, y_sample)
+y_pred = rf.predict(X_test)
+f1 = f1_score(y_test, rf.predict(X_test))
+precison = precision_score(y_test, rf.predict(X_test))
+recall = recall_score(y_test, rf.predict(X_test))
+score = roc_auc_score(y_test, rf.predict(X_test))
+print ('Confusion_matrix' + '\n',confusion_matrix(y_test, rf.predict(X_test)))
+print ('Classification_report' + '\n' + classification_report(y_test,y_pred))
+score = roc_auc_score(y_pred , y_test)
+y_pred_proba = rf.predict_proba(X_test)[:,1]
+fpr, tpr, _ = metrics.roc_curve(y_test,  y_pred_proba)
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
+plt.plot(fpr,tpr,label=&quot;Random_forest model, auc=&quot;+str(auc))
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.legend(loc=4)
+plt.show()
+</code></pre><p><img src="/img/financial/random-forest.jpg" alt="random forest"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>As you can see our model has been improved.F1 score of class 1 increased from 21% to 33%.</p>
+</blockquote>
+<hr>
+<h2 id="code-and-data">Code and Data</h2>
+<p>Full Code and Dataset can be found <a class="link" href="https://github.com/shubendu/Financial-distress-prediction-using-SMOTE"  target="_blank" rel="noopener"
+    >here</a></p>
+<h2 id="conclusion-and-future-work">Conclusion and Future Work</h2>
+<p>Congratulations if you have reached her :) You can try to increase the f1 score of minority class by hyperparameter tuning of random forest. Also you can try using xgboost. If You have any question regarding this blog feel free to contact me on my website</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://greyatom.com/">https://greyatom.com/</a></li>
+<li><a href="https://www.appliedaicourse.com/">https://www.appliedaicourse.com/</a></li>
+</ul>
+
+</section>
+
+
+    
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/markdown-syntax-guide/">
+        
+        
+            <div class="article-image">
+                <img src="/p/markdown-syntax-guide/_hud7e36f7e20e71be184458283bdae4646_55974_23a5d351d2fc2374f952239b6e9c423a.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-xRTZFpFxc6SKQuARS0aZYQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Markdown Syntax Guide</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2020 Shubendu Biswas
+    </section>
+    
+    
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Predicting the human activities from smartphone using support vector machines'><title>Human Activity Recognition with Smartphones</title>
+
+<link rel='canonical' href='https://testing-blog/p/human-activity-recognition-with-smartphones/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Human Activity Recognition with Smartphones'>
+<meta property='og:description' content='Predicting the human activities from smartphone using support vector machines'>
+<meta property='og:url' content='https://testing-blog/p/human-activity-recognition-with-smartphones/'>
+<meta property='og:site_name' content='Shubendu Biswas'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='SVM' /><meta property='article:tag' content='support vector' /><meta property='article:tag' content='human activity recognition' /><meta property='article:tag' content='GridSearch' /><meta property='article:published_time' content='2020-01-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-01-15T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Human Activity Recognition with Smartphones">
+<meta name="twitter:description" content="Predicting the human activities from smartphone using support vector machines">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'dark' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1424c9191d62a064fe1c15f949eb7d24_124835_300x0_resize_box_2.png" width="300"
+                            height="253" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">👨🏻‍💻</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://testing-blog">Shubendu Biswas</a></h1>
+        <h2 class="site-description">trying to explain data with fun</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <p style="color:rgb(255, 255, 255)">Light</p>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <p style="color:rgb(59, 57, 57)">Dark</p>
+                
+                
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://testing-blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/human-activity-recognition-with-smartphones/">Human Activity Recognition with Smartphones</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Predicting the human activities from smartphone using support vector machines
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 15, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="problem-statement">Problem Statement</h1>
+<p>The Human Activity Recognition database was built from the recordings of 30 study participants performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors. The objective is to classify activities into one of the six activities performed.</p>
+<h1 id="about-dataset">About Dataset</h1>
+<p>The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKINGUPSTAIRS, WALKINGDOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data.</p>
+<p>The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.</p>
+<h1 id="attribute-information">Attribute information</h1>
+<p>For each record in the dataset the following is provided:</p>
+<ul>
+<li>
+<p>Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.</p>
+</li>
+<li>
+<p>Triaxial Angular velocity from the gyroscope.</p>
+</li>
+<li>
+<p>A 561-feature vector with time and frequency domain variables.</p>
+</li>
+<li>
+<p>Its activity label.</p>
+</li>
+<li>
+<p>An identifier of the subject who carried out the experiment.</p>
+</li>
+</ul>
+<h2 id="importing-libraries">Importing libraries</h2>
+<pre><code>import pandas as pd
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.svm import SVC
+from sklearn.metrics import precision_recall_fscore_support as error_metric
+from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.feature_selection import SelectFromModel
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import LinearSVC
+import warnings
+warnings.filterwarnings('ignore')
+</code></pre><h2 id="1-eda">1. EDA</h2>
+<h3 id="11-loading-dataset-checking-for-null-values-and-statistical-description">1.1 Loading Dataset ,checking for null values and statistical description</h3>
+<p>The first step - you know the drill by now - load the dataset and see how it looks like. In this task, we are basically looking for descriptive statistics of overall data and look at the null values if they are present. Since the data is too large I will be only printiing till 25 columns.</p>
+<pre><code>data = pd.read_csv('file.csv')
+print('Null Values In DataFrame: {}\n'.format(data.isna().sum().sum()))
+data.describe().T[:25]
+</code></pre><p><img src="/img/human-activity/1.jpg" alt="describe"  /></p>
+<p>We have 563 features and 10299 rows</p>
+<p><img src="/img/human-activity/2.jpg" alt="describe-2"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>After observing the dataset statistical description majority of the values are having a minimum value of -1 and maximum value of 1 which brings us to the conclusion that scaling is not required in this case. Also the data set is free of any kind of null values.</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="12-distribution-of-our-class">1.2 Distribution of our class</h3>
+</li>
+</ul>
+<p>Let&rsquo;s get a little bit deeper dive into exploring the target feature via graphical methods.</p>
+<pre><code>label = data['Activity']
+sns.countplot(x= label)
+plt.xticks(rotation=75);
+</code></pre><p><img src="/img/human-activity/3.jpg" alt="class-distribution"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>The class distribution are somewhat balanced which is a better thing on prediction and model building part.</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="13-how-long-does-the-participant-use-the-staircase">1.3 How Long Does The Participant Use The Staircase?</h3>
+</li>
+</ul>
+<p>Since the dataset has been created in an scientific environment nearly equal preconditions for the participants can be assumed. It is highly likely for the participants to have been walking up and down the same number of staircases. Bascially we are looking to calculate how much time the each participant has been spending while walking downstairs and upstairs as it seems to be most frequent activity. Let us investigate their activity durations. The description of the data states; &ldquo;fixed-width sliding windows of 2.56 sec and 50% overlap&rdquo; for each datapoint.Therefore a single datapoint is gathered every 1.28 sec.</p>
+<pre><code>data_copy = data.copy() 
+data_copy['duration'] = ''
+duration_df = (data_copy.groupby([label[label.isin(['WALKING_UPSTAIRS', 'WALKING_DOWNSTAIRS'])], 'subject'])['duration'].count() * 1.28)
+duration_df = pd.DataFrame(duration_df)
+plot_data = duration_df.reset_index().sort_values('duration', ascending=False)
+plot_data['Activity'] = plot_data['Activity'].map({'WALKING_UPSTAIRS':'Upstairs', 'WALKING_DOWNSTAIRS':'Downstairs'})
+plt.figure(figsize=(15,5))
+sns.barplot(data=plot_data, x='subject', y='duration', hue='Activity')
+plt.title('Participants Compared By Their Staircase Walking Duration')
+plt.xlabel('Participants')
+plt.ylabel('Total Duration [s]')
+plt.show()
+</code></pre><p><img src="/img/human-activity/4.jpg" alt="plot4"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>Nearly all participants have more data for walking upstairs than downstairs. Assuming an equal number of up- and down-walks the participants need longer walking upstairs. Furthermore the range of the duration is narrow and adjusted to the conditions. A young person being ~50% fast in walking upstairs than an older one is reasonable.</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="14-finding-the-correlation">1.4 Finding the correlation</h3>
+</li>
+</ul>
+<p>We always try to reduce our features to the minimum number of most significant features. The basic rule of feature selection is that we need to select features which are highly correlated to the dependent variable and also not highly correlated with each other as they show the same trend. Correlation refers to the mutual relationship and association between quantities and it is generaly used to express one quantity in terms of its relationship with other quantities. This can either be Positive(variables change in the same direction), negative(variables change in opposite direction or neutral(No correlation). Let&rsquo;s investigate the correlated pairs. We are storing the correlated pairs exculding self correlated pairs in the variable named as top_corr_feilds with a threshold of 0.8 for absolute correlation.</p>
+<pre><code>
+feature_cols = data.columns[: -2]   
+correlated_values = data[feature_cols].corr()
+correlated_values = (correlated_values.stack().to_frame().reset_index().rename(columns={'level_0': 'Feature_1', 'level_1': 'Feature_2', 0:'Correlation_score'}))
+correlated_values['abs_correlation'] = correlated_values.Correlation_score.abs()
+top_corr_fields = correlated_values.sort_values('Correlation_score', ascending = False).query('abs_correlation&gt;0.8 ')
+top_corr_fields = top_corr_fields[top_corr_fields['Feature_1'] != top_corr_fields['Feature_2']].reset_index(drop=True)
+</code></pre><p><img src="/img/human-activity/5.jpg" alt="plot5"  /></p>
+<h2 id="2-data-processing-and-baseline-model">2. Data Processing and baseline model</h2>
+<ul>
+<li>
+<h3 id="21-data-preparation-and-implementing-baseline-model">2.1 Data preparation and implementing baseline model</h3>
+</li>
+</ul>
+<p>Now, we will be building a baseline model of svm which would take data with insignificant amount of data preprocessing which is to observe how our model is performing in non ideal situations.</p>
+<pre><code>le = LabelEncoder()
+data['Activity'] = le.fit_transform(data.Activity)
+X = data.iloc[:,:-1]    
+y = data.iloc[:,-1]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=40)
+classifier = SVC()
+clf = classifier.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+precision, recall, f_score, _ = error_metric(y_test, y_pred, average = 'weighted')
+model1_score = accuracy_score(y_test, y_pred)
+print(model1_score)
+print(precision, recall, f_score)
+</code></pre><p><img src="/img/human-activity/6.jpg" alt="plot6"  /></p>
+<ul>
+<li>
+<h3 id="22-feature-selection-and-removing-top-correlated-variables">2.2 Feature selection and removing top correlated variables</h3>
+</li>
+</ul>
+<p>We have near about 500+ features in our dataset. Not every feature contributes towards the model prediction hence we can cut down the no. of features according to their importance and then start a model building on top of it. This vague idea or process is called feature selection. We will be training a new scv model on new reduced dataset. We are reducing the features with the help of sklearn SelectFromModel. Lets see the accuracy metrics of this new trained model and shape of our new dataset.</p>
+<pre><code>lsvc = LinearSVC(C = 0.01, penalty=&quot;l1&quot;, dual=False, random_state=42).fit(X_train, y_train)
+model_2 = SelectFromModel(lsvc, prefit=True)
+new_train_features = model_2.transform(X_train)
+new_test_features = model_2.transform(X_test)
+print(new_train_features.shape,new_test_features.shape )
+classifier_2 = SVC()
+clf_2 = classifier_2.fit(new_train_features, y_train)
+y_pred_new = clf_2.predict(new_test_features)
+model2_score =accuracy_score(y_test, y_pred_new)
+precision, recall, f_score, _ = error_metric(y_test, y_pred_new, average='weighted')
+print(model2_score)
+print(precision, recall, f_score)
+</code></pre><p><img src="/img/human-activity/7.jpg" alt="plot7"  /></p>
+<p>Observation</p>
+<blockquote>
+<p>As we can see that our model is still working really well even after reduction of so many features. We have reduced features from 562 to 110 and you can compare the accuracy from previous model it is almost equivalent.</p>
+</blockquote>
+<h2 id="4-hyperparameter-tuning-for-svc-with-grid-search-and-final-model-building">4. Hyperparameter Tuning for SVC with Grid Search and final model building.</h2>
+<p>Model hyperparmeters are configurations that is external to the model and whose value cannot be estimated from data. We will use gridsearch here with both rbf and linear kernel and value of C from 0.1 to 100.</p>
+<pre><code>parameters = {
+    'kernel': ['linear', 'rbf'],
+    'C': [100, 20, 1, 0.1]
+}
+
+selector = GridSearchCV(SVC(), parameters, scoring='accuracy') 
+selector.fit(new_train_features, y_train)
+
+print('Best parameter set found:')
+print(selector.best_params_)
+print('Detailed grid scores:')
+means = selector.cv_results_['mean_test_score']
+stds = selector.cv_results_['std_test_score']
+for mean, std, params in zip(means, stds, selector.cv_results_['params']):
+    print('%0.3f (+/-%0.03f) for %r' % (mean, std * 2, params))
+    print()
+
+classifier_3 = SVC(kernel='rbf', C=100)
+clf_3 = classifier_3.fit(new_train_features, y_train)
+y_pred_final = clf_3.predict(new_test_features)
+model3_score = accuracy_score(y_test, y_pred_final)
+
+print('Accuracy score:', model3_score)
+
+</code></pre><p><img src="/img/human-activity/8.jpg" alt="plot8"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>As we can see this is the best hyperparameter {&lsquo;C&rsquo;: 100, &lsquo;kernel&rsquo;: &lsquo;rbf&rsquo;} with accuracy of 98.38%</p>
+</blockquote>
+<hr>
+<h2 id="code-and-data">Code and Data</h2>
+<p>Full Code and Dataset can be found <a class="link" href="https://github.com/shubendu/human-activity-recognition"  target="_blank" rel="noopener"
+    >here</a></p>
+<h2 id="conclusion-and-future-work">Conclusion and Future Work</h2>
+<p>Congratulations if you have reached her :) We can try tree based models such as random forest and GBDT. If You have any question regarding this blog feel free to contact me on my website</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://greyatom.com/">https://greyatom.com/</a></li>
+<li><a href="https://www.appliedaicourse.com/">https://www.appliedaicourse.com/</a></li>
+</ul>
+
+</section>
+
+
+    
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2020 Shubendu Biswas
+    </section>
+    
+    
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

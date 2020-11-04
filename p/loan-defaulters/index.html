@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Using Decision Tree model, classify whether or not the borrower paid back their loan in full.'><title>Loan Defaulters</title>
+
+<link rel='canonical' href='https://testing-blog/p/loan-defaulters/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Loan Defaulters'>
+<meta property='og:description' content='Using Decision Tree model, classify whether or not the borrower paid back their loan in full.'>
+<meta property='og:url' content='https://testing-blog/p/loan-defaulters/'>
+<meta property='og:site_name' content='Shubendu Biswas'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='decision tree' /><meta property='article:tag' content='CART' /><meta property='article:tag' content='GridSearch' /><meta property='article:tag' content='EDA' /><meta property='article:tag' content='loan-defaulters' /><meta property='article:published_time' content='2020-01-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-01-24T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Loan Defaulters">
+<meta name="twitter:description" content="Using Decision Tree model, classify whether or not the borrower paid back their loan in full.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'dark' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1424c9191d62a064fe1c15f949eb7d24_124835_300x0_resize_box_2.png" width="300"
+                            height="253" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">👨🏻‍💻</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://testing-blog">Shubendu Biswas</a></h1>
+        <h2 class="site-description">trying to explain data with fun</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <p style="color:rgb(255, 255, 255)">Light</p>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <p style="color:rgb(59, 57, 57)">Dark</p>
+                
+                
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://testing-blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/loan-defaulters/">Loan Defaulters</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Using Decision Tree model, classify whether or not the borrower paid back their loan in full.
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 24, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="problem">Problem</h1>
+<p>For this project we will be exploring the publicly available data from LendingClub.com. Lending Club connects people who need money (borrowers) with people who have money (investors). As an investor one would want to invest in people who showed a profile of having a high probability of paying the amount back. Using Decision Tree model, classify whether or not the borrower paid back their loan in full.</p>
+<h1 id="about-dataset">About Dataset</h1>
+<p>The snapshot of the data we will be working on:</p>
+<p><img src="/img/loan/1.jpg" alt="1"  /></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customer.id</td>
+<td>ID of the customer</td>
+</tr>
+<tr>
+<td>credit.policy</td>
+<td>If the customer meets the credit underwriting criteria of LendingClub.com or not</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>The purpose of the loan(takes values :&ldquo;creditcard&rdquo;, &ldquo;debtconsolidation&rdquo;, &ldquo;educational&rdquo;, &ldquo;majorpurchase&rdquo;, &ldquo;smallbusiness&rdquo;, and &ldquo;all_other&rdquo;).</td>
+</tr>
+<tr>
+<td>int.rate</td>
+<td>The interest rate of the loan</td>
+</tr>
+<tr>
+<td>installment</td>
+<td>The monthly installments owed by the borrower if the loan is funded</td>
+</tr>
+<tr>
+<td>log.annual.inc</td>
+<td>The natural log of the self-reported annual income of the borrower</td>
+</tr>
+<tr>
+<td>dti</td>
+<td>The debt-to-income ratio of the borrower (amount of debt divided by annual income)</td>
+</tr>
+<tr>
+<td>fico</td>
+<td>The FICO credit score of the borrower</td>
+</tr>
+<tr>
+<td>days.with.cr.line</td>
+<td>The number of days the borrower has had a credit line.</td>
+</tr>
+<tr>
+<td>revol.bal</td>
+<td>The borrower&rsquo;s revolving balance (amount unpaid at the end of the credit card billing cycle)</td>
+</tr>
+<tr>
+<td>revol.util</td>
+<td>The borrower&rsquo;s revolving line utilization rate (the amount of the credit line used relative to total credit available)</td>
+</tr>
+<tr>
+<td>pub.rec</td>
+<td>The borrower&rsquo;s number of derogatory public records (bankruptcy filings, tax liens, or judgments)</td>
+</tr>
+<tr>
+<td>inq.last.6mths</td>
+<td>The borrower&rsquo;s number of inquiries by creditors in the last 6 months</td>
+</tr>
+<tr>
+<td>delinq.2yrs</td>
+<td>The number of times the borrower had been 30+ days past due on a payment in the past 2 years</td>
+</tr>
+<tr>
+<td>paid.back.loan</td>
+<td>Whether the user has paid back loan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="importing-libraries">Importing libraries</h2>
+<pre><code>import pandas as pd
+from sklearn.model_selection import train_test_split
+import warnings
+warnings.filterwarnings('ignore')
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+import seaborn as sns
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import GridSearchCV
+</code></pre><h2 id="loading-dataset-checking-for-null-values">Loading Dataset ,checking for null values</h2>
+<p>The first step - you know the drill by now - load the dataset and see how it looks like. In this task, we are basically looking for glimpse of overall data and look at the null values if they are present also some statistical representation of our data.</p>
+<pre><code>data  = pd.read_csv('loan.csv')
+data.head().T
+data.describe()
+data.info()
+</code></pre><p><img src="/img/loan/2.jpg" alt="2"  /></p>
+<p><img src="/img/loan/3.jpg" alt="3"  /></p>
+<p><img src="/img/loan/4.jpg" alt="4"  /></p>
+<p>Observation</p>
+<blockquote>
+<p>We have no null values. We&rsquo;ll drop the customer id, as it is of no use for our model and we have both numeric and categorical types of data which we will further preprocess.</p>
+</blockquote>
+<h2 id="splitting-the-data">Splitting the data</h2>
+<p>Let&rsquo;s split the data into train and test</p>
+<pre><code>X = data.drop(['customer.id','paid.back.loan'], axis = 1)
+y = data['paid.back.loan']
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3, random_state = 0)
+print(X_train.shape , y_train.shape)
+print(X_test.shape, y_test.shape)
+</code></pre><p><img src="/img/loan/5.jpg" alt="5"  /></p>
+<h2 id="target-variable-distribution">Target variable distribution</h2>
+<p>The distribution of &ldquo;paid.back.loan&rdquo; and plotting barplot.</p>
+<p><img src="/img/loan/6.jpg" alt="6"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>We can see that 5639 people have paid back loan while 1065 people not paid back the loan.</p>
+</blockquote>
+<h2 id="feature-enginnering">Feature Enginnering</h2>
+<p>We need to preprocess data beofre feature engineering as we can see that &ldquo;int.rate&rdquo; column has percentage symbol which need to be remove and later I am dividing that column with 100 to get the actual percentage values. After that I will be seperating the data into numeric and categorical dataframe.</p>
+<pre><code>#Removing the last character from the values in column
+X_train['int.rate'] = X_train['int.rate'].map(lambda x: str(x)[:-1])
+
+#Dividing the column values by 100
+X_train['int.rate']=X_train['int.rate'].astype(float)/100
+
+#Removing the last character from the values in column
+X_test['int.rate'] = X_test['int.rate'].map(lambda x: str(x)[:-1])
+
+#Dividing the column values by 100
+X_test['int.rate']=X_test['int.rate'].astype(float)/100
+
+#Storing all the numerical type columns in 'num_df'
+num_df=X_train.select_dtypes(include=['number']).copy()
+
+#Storing all the categorical type columns in 'cat_df'
+cat_df=X_train.select_dtypes(include=['object']).copy()
+</code></pre><h2 id="feature-visualisation">Feature Visualisation</h2>
+<p>Now we can visualise the distribuiton of our numeric dataset in different calss variable. Below code will do the job</p>
+<pre><code>cols=list(num_df.columns)
+for i in range(9):          
+    
+    #Plotting boxplot
+    sns.boxplot(x=y_train,y=num_df[cols[i]],ax=axes[i])
+    
+    #Avoiding subplots overlapping
+    fig.tight_layout()    
+</code></pre><p><img src="/img/loan/7.jpg" alt="7"  /></p>
+<p><img src="/img/loan/8.jpg" alt="8"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>Most of our features has different distribution for our class variable which is good for our model</p>
+</blockquote>
+<hr>
+<p>Lets&rsquo;s visualise the categorical features as well. I will be plotting using seaborn to see how our distribution differs in different class.</p>
+<pre><code>cols=list(cat_df.columns)
+#Looping through rows
+for i in range(0,2):
+    
+    #Looping through columns
+    for j in range(0,2):
+        
+        #Plotting count plot
+        sns.countplot(x=X_train[cols[i*2+j]], hue=y_train,ax=axes[i,j])                        
+        
+        #Avoiding subplots overlapping
+        fig.tight_layout()    
+
+</code></pre><p><img src="/img/loan/9.jpg" alt="9"  />
+<img src="/img/loan/10.jpg" alt="10"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>We can see that the major reason that stands common for the majority of customers who have applied for a loan is debt_consolidation which means taking one loan to payoff there other loans.</p>
+</blockquote>
+<h2 id="model-building">Model Building</h2>
+<p>Let&rsquo;s Apply the Decision Tree classifier to our dataset. We will encode the categorical features using label encoder.</p>
+<pre><code>for col in cat_df.columns:
+    
+    #Filling null values with 'NA'
+    X_train[col].fillna('NA',inplace=True)
+    
+    #Initalising a label encoder object
+    le=LabelEncoder()
+    
+    #Fitting and transforming the column in X_train with 'le'
+    X_train[col]=le.fit_transform(X_train[col]) 
+    
+    #Filling null values with 'NA'
+    X_test[col].fillna('NA',inplace=True)
+    
+    #Fitting the column in X_test with 'le'
+    X_test[col]=le.transform(X_test[col]) 
+
+# Replacing the values of y_train
+y_train.replace({'No':0,'Yes':1},inplace=True)
+
+# Replacing the values of y_test
+y_test.replace({'No':0,'Yes':1},inplace=True)
+
+#Initialising 'Decision Tree' model    
+model=DecisionTreeClassifier(random_state=0)
+
+#Training the 'Decision Tree' model
+model.fit(X_train, y_train)
+
+#Finding the accuracy of 'Decision Tree' model
+acc=model.score(X_test, y_test)
+
+#Printing the accuracy
+print(acc)
+</code></pre><p><img src="/img/loan/11.jpg" alt="11"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>We have total 74% accuracy on our model without having any hyperparameter tuning.</p>
+</blockquote>
+<h2 id="decision-tree-pruning">Decision Tree Pruning</h2>
+<p>Let&rsquo;s see if pruning of decision tree improves its accuracy. We will use grid search to do the optimum pruning.</p>
+<pre><code>parameter_grid = {'max_depth': np.arange(3,10), 'min_samples_leaf': range(10,50,10)}
+
+#Code starts here
+
+#Initialising 'Decision Tree' model
+model_2 = DecisionTreeClassifier(random_state=0)
+
+#Applying Grid Search of hyper-parameters and finding the optimum 'Decision Tree' model
+p_tree = GridSearchCV(model_2, parameter_grid, cv=5)
+
+#Training the optimum 'Decision Tree' model
+p_tree.fit(X_train, y_train)
+
+#Finding the accuracy of the optimum 'Decision Tree' model
+acc_2 = p_tree.score(X_test, y_test)
+
+#Printing the accuracy
+print(acc_2)
+</code></pre><p><img src="/img/loan/12.jpg" alt="12"  /></p>
+<p>Observation:</p>
+<blockquote>
+<p>Great our accuracy has improved drastically.</p>
+</blockquote>
+<h2 id="tree-visualising">Tree visualising</h2>
+<p>we can also visualise our tree.</p>
+<pre><code>#Importing header files
+
+from io import StringIO
+from sklearn.tree import export_graphviz
+from sklearn import tree
+from sklearn import metrics
+from IPython.display import Image
+import pydotplus
+
+
+#Creating DOT data
+dot_data = export_graphviz(decision_tree=p_tree.best_estimator_, out_file=None, 
+                                feature_names=X.columns, filled = True,  
+                                class_names=['loan_paid_back_yes','loan_paid_back_no'])
+
+#Drawing graph
+graph_big = pydotplus.graph_from_dot_data(dot_data)  
+
+#Displaying graph
+# show graph - do not delete/modify the code below this line
+
+img_path = user_data_dir+'/file.png'
+graph_big.write_png(img_path)
+
+plt.figure(figsize=(20,15))
+plt.imshow(plt.imread(img_path))
+plt.axis('off')
+plt.show() 
+
+</code></pre><p><img src="/img/loan/13.jpg" alt="13"  /></p>
+<hr>
+<h2 id="code-and-data">Code and Data</h2>
+<p>Full Code and Dataset can be found <a class="link" href="https://github.com/shubendu/Loan-Defaulters"  target="_blank" rel="noopener"
+    >here</a></p>
+<h2 id="conclusion-and-future-work">Conclusion and Future Work</h2>
+<p>Congratulations if you have reached her :) We can try GBDT and XgBoost to increase our model accuracy.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://greyatom.com/">https://greyatom.com/</a></li>
+</ul>
+
+</section>
+
+
+    
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/sloan-defaulters-inside-one/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">sLoan Defaulters inside one</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2020 Shubendu Biswas
+    </section>
+    
+    
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
