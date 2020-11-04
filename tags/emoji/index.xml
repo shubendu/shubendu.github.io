@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>emoji on Shubendu Biswas</title>
-    <link>https://shubendu.github.io/testing-blog/./tags/emoji/</link>
+    <link>heuristic-booth-8cb1e4.netlify.app/tags/emoji/</link>
     <description>Recent content in emoji on Shubendu Biswas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/testing-blog/./tags/emoji/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="heuristic-booth-8cb1e4.netlify.app/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emoji Support</title>
-      <link>https://shubendu.github.io/testing-blog/./p/emoji-support/</link>
+      <link>heuristic-booth-8cb1e4.netlify.app/p/emoji-support/</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://shubendu.github.io/testing-blog/./p/emoji-support/</guid>
+      <guid>heuristic-booth-8cb1e4.netlify.app/p/emoji-support/</guid>
       <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
     </item>
     

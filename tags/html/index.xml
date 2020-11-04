@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>html on Shubendu Biswas</title>
-    <link>https://shubendu.github.io/testing-blog/./tags/html/</link>
+    <link>heuristic-booth-8cb1e4.netlify.app/tags/html/</link>
     <description>Recent content in html on Shubendu Biswas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/testing-blog/./tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="heuristic-booth-8cb1e4.netlify.app/tags/html/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Markdown Syntax Guide</title>
-      <link>https://shubendu.github.io/testing-blog/./p/markdown-syntax-guide/</link>
+      <link>heuristic-booth-8cb1e4.netlify.app/p/markdown-syntax-guide/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://shubendu.github.io/testing-blog/./p/markdown-syntax-guide/</guid>
+      <guid>heuristic-booth-8cb1e4.netlify.app/p/markdown-syntax-guide/</guid>
       <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
     </item>
     
