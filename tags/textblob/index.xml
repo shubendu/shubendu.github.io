@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TextBlob on Shubendu Biswas</title>
-    <link>heuristic-booth-8cb1e4.netlify.app/tags/textblob/</link>
+    <link>https://shubendu.github.io/tags/textblob/</link>
     <description>Recent content in TextBlob on Shubendu Biswas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="heuristic-booth-8cb1e4.netlify.app/tags/textblob/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/tags/textblob/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sentiment analysis of tweets</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/p/sentiment-analysis-of-tweets/</link>
+      <link>https://shubendu.github.io/p/sentiment-analysis-of-tweets/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/p/sentiment-analysis-of-tweets/</guid>
+      <guid>https://shubendu.github.io/p/sentiment-analysis-of-tweets/</guid>
       <description>Problem Twitter data is massive and as such analyzing twitter data is a mammoth undertaking. the cleaning and pre-processing of Twitter. Political polarization and reactions to new products are probably some of the biggest use-cases of twitter data analytics. We have dataset containing user tweets. These tweets can be negative (0) and positive (4). Based on the obtained data our goal is to identify the sentiment/polarity of the tweets.
 About Dataset There are 6 columns/features in the dataset and are described below:</description>
     </item>

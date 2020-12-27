@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>financial on Shubendu Biswas</title>
-    <link>heuristic-booth-8cb1e4.netlify.app/tags/financial/</link>
+    <link>https://shubendu.github.io/tags/financial/</link>
     <description>Recent content in financial on Shubendu Biswas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="heuristic-booth-8cb1e4.netlify.app/tags/financial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/tags/financial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Financial Distress Prediction using SMOTE</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/p/financial-distress-prediction-using-smote/</link>
+      <link>https://shubendu.github.io/p/financial-distress-prediction-using-smote/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/p/financial-distress-prediction-using-smote/</guid>
+      <guid>https://shubendu.github.io/p/financial-distress-prediction-using-smote/</guid>
       <description>Problem Statement Credit scoring algorithms, which makes a guess at the probability of default, are the method banks use to determine whether or not a loan should be granted. We will predicting the probability that somebody will experience financial distress in the next two years.
 Dataset    Feature Description     SeriousDlqin2yrs Person experienced 90 days past due delinquency or worse   RevolvingUtilizationOfUnsecuredLines Total balance on credit cards and personal lines of credit   age Age of borrower in years   NumberOfTime30-59DaysPastDueNotWorse Number of times borrower has been 30-59 days past due but no worse in the last 2 years   DebtRatio Monthly debt payments, alimony,living costs divided by monthy gross income   MonthlyIncome Monthly Income   NumberOfOpenCreditLinesAndLoans Number of Open loans (installment like car loan or mortgage) and Lines of credit   NumberOfTimes90DaysLate Number of times borrower has been 90 days or more past due   NumberRealEstateLoansOrLines Number of mortgage and real estate loans including home equity lines of credit   NumberOfTime60-89DaysPastDueNotWorse Number of times borrower has been 60-89 days past due but no worse in the last 2 years   NumberOfDependents Number of dependents in family excluding themselves    Importing libraries import pandas as pdimport numpy as npimport osimport matplotlib.</description>
     </item>

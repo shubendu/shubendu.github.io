@@ -2,269 +2,269 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Shubendu Biswas</title>
-    <link>heuristic-booth-8cb1e4.netlify.app/tags/</link>
+    <link>https://shubendu.github.io/tags/</link>
     <description>Recent content in Tags on Shubendu Biswas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="heuristic-booth-8cb1e4.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NLP</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/nlp/</link>
+      <link>https://shubendu.github.io/tags/nlp/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/nlp/</guid>
+      <guid>https://shubendu.github.io/tags/nlp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sentiment</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/sentiment/</link>
+      <link>https://shubendu.github.io/tags/sentiment/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/sentiment/</guid>
+      <guid>https://shubendu.github.io/tags/sentiment/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Text Preprocessing</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/text-preprocessing/</link>
+      <link>https://shubendu.github.io/tags/text-preprocessing/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/text-preprocessing/</guid>
+      <guid>https://shubendu.github.io/tags/text-preprocessing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>TextBlob</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/textblob/</link>
+      <link>https://shubendu.github.io/tags/textblob/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/textblob/</guid>
+      <guid>https://shubendu.github.io/tags/textblob/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tweets</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/tweets/</link>
+      <link>https://shubendu.github.io/tags/tweets/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/tweets/</guid>
+      <guid>https://shubendu.github.io/tags/tweets/</guid>
       <description></description>
     </item>
     
     <item>
       <title>twitter</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/twitter/</link>
+      <link>https://shubendu.github.io/tags/twitter/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/twitter/</guid>
+      <guid>https://shubendu.github.io/tags/twitter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VaderSentiment</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/vadersentiment/</link>
+      <link>https://shubendu.github.io/tags/vadersentiment/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/vadersentiment/</guid>
+      <guid>https://shubendu.github.io/tags/vadersentiment/</guid>
       <description></description>
     </item>
     
     <item>
       <title>word cloud</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/word-cloud/</link>
+      <link>https://shubendu.github.io/tags/word-cloud/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/word-cloud/</guid>
+      <guid>https://shubendu.github.io/tags/word-cloud/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CART</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/cart/</link>
+      <link>https://shubendu.github.io/tags/cart/</link>
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/cart/</guid>
+      <guid>https://shubendu.github.io/tags/cart/</guid>
       <description></description>
     </item>
     
     <item>
       <title>decision tree</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/decision-tree/</link>
+      <link>https://shubendu.github.io/tags/decision-tree/</link>
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/decision-tree/</guid>
+      <guid>https://shubendu.github.io/tags/decision-tree/</guid>
       <description></description>
     </item>
     
     <item>
       <title>EDA</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/eda/</link>
+      <link>https://shubendu.github.io/tags/eda/</link>
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/eda/</guid>
+      <guid>https://shubendu.github.io/tags/eda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GridSearch</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/gridsearch/</link>
+      <link>https://shubendu.github.io/tags/gridsearch/</link>
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/gridsearch/</guid>
+      <guid>https://shubendu.github.io/tags/gridsearch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>loan-defaulters</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/loan-defaulters/</link>
+      <link>https://shubendu.github.io/tags/loan-defaulters/</link>
       <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/loan-defaulters/</guid>
+      <guid>https://shubendu.github.io/tags/loan-defaulters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>human activity recognition</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/human-activity-recognition/</link>
+      <link>https://shubendu.github.io/tags/human-activity-recognition/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/human-activity-recognition/</guid>
+      <guid>https://shubendu.github.io/tags/human-activity-recognition/</guid>
       <description></description>
     </item>
     
     <item>
       <title>support vector</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/support-vector/</link>
+      <link>https://shubendu.github.io/tags/support-vector/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/support-vector/</guid>
+      <guid>https://shubendu.github.io/tags/support-vector/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SVM</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/svm/</link>
+      <link>https://shubendu.github.io/tags/svm/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/svm/</guid>
+      <guid>https://shubendu.github.io/tags/svm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>financial</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/financial/</link>
+      <link>https://shubendu.github.io/tags/financial/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/financial/</guid>
+      <guid>https://shubendu.github.io/tags/financial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>logistic regression</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/logistic-regression/</link>
+      <link>https://shubendu.github.io/tags/logistic-regression/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/logistic-regression/</guid>
+      <guid>https://shubendu.github.io/tags/logistic-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>random forest</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/random-forest/</link>
+      <link>https://shubendu.github.io/tags/random-forest/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/random-forest/</guid>
+      <guid>https://shubendu.github.io/tags/random-forest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SMOTE</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/smote/</link>
+      <link>https://shubendu.github.io/tags/smote/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/smote/</guid>
+      <guid>https://shubendu.github.io/tags/smote/</guid>
       <description></description>
     </item>
     
     <item>
       <title>css</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/css/</link>
+      <link>https://shubendu.github.io/tags/css/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/css/</guid>
+      <guid>https://shubendu.github.io/tags/css/</guid>
       <description></description>
     </item>
     
     <item>
       <title>html</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/html/</link>
+      <link>https://shubendu.github.io/tags/html/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/html/</guid>
+      <guid>https://shubendu.github.io/tags/html/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/markdown/</link>
+      <link>https://shubendu.github.io/tags/markdown/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/markdown/</guid>
+      <guid>https://shubendu.github.io/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>themes</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/themes/</link>
+      <link>https://shubendu.github.io/tags/themes/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/themes/</guid>
+      <guid>https://shubendu.github.io/tags/themes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>privacy</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/privacy/</link>
+      <link>https://shubendu.github.io/tags/privacy/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/privacy/</guid>
+      <guid>https://shubendu.github.io/tags/privacy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>shortcodes</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/shortcodes/</link>
+      <link>https://shubendu.github.io/tags/shortcodes/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/shortcodes/</guid>
+      <guid>https://shubendu.github.io/tags/shortcodes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tag with whitespaces</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/tag-with-whitespaces/</link>
+      <link>https://shubendu.github.io/tags/tag-with-whitespaces/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/tag-with-whitespaces/</guid>
+      <guid>https://shubendu.github.io/tags/tag-with-whitespaces/</guid>
       <description></description>
     </item>
     
     <item>
       <title>text</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/text/</link>
+      <link>https://shubendu.github.io/tags/text/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/text/</guid>
+      <guid>https://shubendu.github.io/tags/text/</guid>
       <description></description>
     </item>
     
     <item>
       <title>emoji</title>
-      <link>heuristic-booth-8cb1e4.netlify.app/tags/emoji/</link>
+      <link>https://shubendu.github.io/tags/emoji/</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>heuristic-booth-8cb1e4.netlify.app/tags/emoji/</guid>
+      <guid>https://shubendu.github.io/tags/emoji/</guid>
       <description></description>
     </item>
     
