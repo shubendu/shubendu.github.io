@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>loan-defaulters on Shubendu Biswas</title>
+    <link>https://shubendu.github.io/categories/loan-defaulters/</link>
+    <description>Recent content in loan-defaulters on Shubendu Biswas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/categories/loan-defaulters/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Loan Defaulters</title>
+      <link>https://shubendu.github.io/p/test-yolo/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/p/test-yolo/</guid>
+      <description>Problem For this project we will be exploring the publicly available data from LendingClub.com. Lending Club connects people who need money (borrowers) with people who have money (investors). As an investor one would want to invest in people who showed a profile of having a high probability of paying the amount back. Using Decision Tree model, classify whether or not the borrower paid back their loan in full.
+About Dataset The snapshot of the data we will be working on:</description>
+    </item>
+    
+  </channel>
+</rss>

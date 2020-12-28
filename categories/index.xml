@@ -6,49 +6,193 @@
     <description>Recent content in Categories on Shubendu Biswas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shubendu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NLP</title>
+      <link>https://shubendu.github.io/categories/nlp/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sentiment</title>
+      <link>https://shubendu.github.io/categories/sentiment/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/sentiment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Text Preprocessing</title>
+      <link>https://shubendu.github.io/categories/text-preprocessing/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/text-preprocessing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TextBlob</title>
+      <link>https://shubendu.github.io/categories/textblob/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/textblob/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tweets</title>
+      <link>https://shubendu.github.io/categories/tweets/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/tweets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>twitter</title>
+      <link>https://shubendu.github.io/categories/twitter/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/twitter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VaderSentiment</title>
+      <link>https://shubendu.github.io/categories/vadersentiment/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/vadersentiment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>word cloud</title>
+      <link>https://shubendu.github.io/categories/word-cloud/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/word-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CART</title>
+      <link>https://shubendu.github.io/categories/cart/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/cart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>decision tree</title>
+      <link>https://shubendu.github.io/categories/decision-tree/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/decision-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>EDA</title>
+      <link>https://shubendu.github.io/categories/eda/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/eda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GridSearch</title>
+      <link>https://shubendu.github.io/categories/gridsearch/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/gridsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loan-defaulters</title>
+      <link>https://shubendu.github.io/categories/loan-defaulters/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/loan-defaulters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>human activity recognition</title>
+      <link>https://shubendu.github.io/categories/human-activity-recognition/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/human-activity-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>support vector</title>
+      <link>https://shubendu.github.io/categories/support-vector/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/support-vector/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SVM</title>
+      <link>https://shubendu.github.io/categories/svm/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/svm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>financial</title>
+      <link>https://shubendu.github.io/categories/financial/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/financial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>logistic regression</title>
+      <link>https://shubendu.github.io/categories/logistic-regression/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/logistic-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>random forest</title>
+      <link>https://shubendu.github.io/categories/random-forest/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/random-forest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SMOTE</title>
+      <link>https://shubendu.github.io/categories/smote/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://shubendu.github.io/categories/smote/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Test</title>
       <link>https://shubendu.github.io/categories/test/</link>
-      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://shubendu.github.io/categories/test/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>测试</title>
-      <link>https://shubendu.github.io/categories/%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://shubendu.github.io/categories/%E6%B5%8B%E8%AF%95/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>syntax</title>
-      <link>https://shubendu.github.io/categories/syntax/</link>
-      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://shubendu.github.io/categories/syntax/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>themes</title>
-      <link>https://shubendu.github.io/categories/themes/</link>
-      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://shubendu.github.io/categories/themes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Test with whitespaces</title>
-      <link>https://shubendu.github.io/categories/test-with-whitespaces/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://shubendu.github.io/categories/test-with-whitespaces/</guid>
       <description></description>
     </item>
     
